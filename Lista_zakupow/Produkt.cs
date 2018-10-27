@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Lista_zakupow
 {
-    class Produkt
+    class Produkt: ICena    
     {
 
         public string NazwaProduktu { get; private set; }
@@ -22,7 +22,9 @@ namespace Lista_zakupow
             Cena = cena;
         }
 
-
-
+        public void WyswietlCene()
+        {
+            Console.WriteLine($"Cena {NazwaProduktu} wynosi: {Cena} zł"); 
+        }
     }
 }

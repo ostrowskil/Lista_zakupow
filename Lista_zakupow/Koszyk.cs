@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Lista_zakupow
 {
-    class Koszyk
+    class Koszyk : ICena
     {
 
         List<Produkt> MojKosz = new List<Produkt>();
@@ -16,11 +16,20 @@ namespace Lista_zakupow
             MojKosz.Add(dodawanyProdukt);
         }
 
-        public void UsunZKoszyka()
+        public void UsunZKoszyka(uint idUsuwanegoProduktu)
         {
 
+            for (int i = 0; i < MojKosz.Count; i++)
+            {
+                if (MojKosz[i].NumerProduktu == idUsuwanegoProduktu)
+                {
+                    MojKosz.RemoveAt(i);
+                }
+            }
 
         }
+
+
 
         public void ZawartoscKoszyka()
         {
@@ -38,5 +47,29 @@ namespace Lista_zakupow
         }
 
 
+
+        public void WyswietlCene()
+        {
+            decimal saldo = 0;
+            foreach (var MojKosz in MojKosz)
+            {
+                saldo = saldo + MojKosz.Cena;
+            }
+
+            Console.WriteLine($"Salod koszyka wynosi:  {saldo} zł");
+
+        }
+
+
+        public void PodsumowanieKoszyka()
+
+        {
+            ZawartoscKoszyka();
+            WyswietlCene(); 
+
+        }
+
+
     }
+
 }
